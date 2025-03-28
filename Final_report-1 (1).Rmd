@@ -1,0 +1,611 @@
+---
+title: "Final Report"
+author: "aditya venugopalan a1899824"
+date: "2023-11-17"
+output: pdf_document
+---
+
+
+
+# Executive Summary
+
+# The following report is an analysis based on the Dataset provided by the world famous audio streaming and media services provider SPOTIFY. As the largest music streaming service in the world with the estimate of 165 million paying subscribers  , the founders of spotify are very much intrested in improving their customer services . In order to improve thier services, as a data scientist I was  requested to give a prediction based on a prediction model , the predictons were mainly focusing on genre when comapred with other variables based on  year of release, dancebability, tempo, speechiness . This prediction could help to provide accurate recommendations to the spotify team as well as the users for a better experience . When we beggan our analysis the dataset was holding information about 32,833 songs accompanied by 23 variables. Based on this three predictive  models were set up in such a way that they gave away different metrics such as AUC, Accuracy , Sensitivity and Specificity. After the models were set up they were comapred among themselves. It was later found out that after fitting and evaluation Random Forest model was the best model for genre prediction.
+
+
+# Methods 
+## The analysis was successfully analyzed on the programming language called R studio. The R studio is an integrated environment for R, which is done by using R language
+
+## The spotify dataset consisted of 32,833 observations on 23 variables or features.
+
+## But since the founders were only intrested in 4 varaibles:
+## a) track_album_release_date: this variable gives us information about the year when the song was released
+## b) speechiness - this variable tells how speechy the song is
+## c) danceability - this variable tells us how dancebale the song is
+## d) temp - this feature tells us about the tempo of the song
+
+## The reaqson for mentioning the other features is simply because currently it is not the concern of the founders , but if needed they can be viewed muliple times as they are called again and again before the process of data cleanining and dimensions reduction. 
+
+## The goal of this analysis was to build a project was to build models thar are capable to predict the genre of songs when compared against the following features are:
+## a) time when song was released
+## b) the speechiness of song
+## c) the danceability of song
+## d) the tempo of the song
+
+## we began our analysis by skimming the data set . This waas done to get ourselves a genreal idea of the data set . 
+
+## After getting the important observation we began the process of data cleaning . We began data cleaning by checking whether  empty exists or not.  It was found that varaibles  track_name,track_artist and track_album_name had same amount of missing values which is 5. Therefore before proceeding we had to get rid of these empty values and we did this by eliminating them . The function na.omit was used. 
+## After dropping the empty values we will proceed by keeping the columns taht will help us in achieve our goals. Since keeping the rest of the coulmns could possibliy manipulate the actual results of our prediction.
+
+
+## Now we have our dataset with no empty values but still there were issues. After skimming the data again to check the new data we observed there were some data variables with not correct data types, as a data scientist whenver we begin our analyzis of our plots or our models we need to make sure hat our data is in correct data type since it can cause errors. We changed the data type of variable plalylist_genre and extracted only the year data from the track_alubum_release_date variable since the analyis only need the year and not days or months.
+
+## Now we will reduce the dimenions by reeducing rows and coulmns   and  the feature playlist_genre is limited it to 1000 due to less compuataional power. Now our data is fit to be analyzed and we can proceed with the Exploratory Data Analysis(EDA).
+
+## The process of Eda was very direct response to the questions asked by the founders of spotify. After EDA the dataset is split into two sets namely the testing and the training set. The training dataset and the testing dataset had 75% and 25% of the data respectively. The best way to explain the spliting of data is the tuning and fitting of the data is done with the help of the training set while the testing model by its name tell us that it is used to get predictions from the best model we choose. And the selection of the best model is done by observing the perfomances of each model.
+
+## The three models that were built and evaluated in this analysis were knn , lda and random forest model. The models are tuned to optimize the performance and after that the performance of each models are compared . The comaparison of the models was success as the model with hhighest accuracy was selected for prediction.
+
+# Results
+
+## Exploratory Data Analysis
+
+## In this section the quereies that were put forward by the founders are explained in detail along with the observations and answers obtained through EDA are given:
+
+## a)  Does the year which the songs were released differ between genres?
+## answer: Yes as shown in figure one , there is sginificant difference in the years of tracks relases for different genres. rock music was released around year 2000, r& b was released around 2014 . while Pop, EDM and Latin songs were mostly released relatively very  close to 2017  EDM songs were released near  2019. The spread of years which Rock songs were released are most . . R&B songs is the genre which has earliest released tracks.
+
+## b) How speechy the song is ? Is there any difference which helps in prediction
+## answer) Yes in figure 2 we can see that there is a difference in every genre when it comes to speechiness for each genre. Rap genre has highest speechiness while rock and pop have lowest. Also the spread of speechiness is more in latin and R&B when compared to others
+## c) How danceable the song is , is there any difference?
+## answer) Yes as shown in figure 3 rap songs have highest danceability than otherd . Rock genre has the least danceability while Latin and R&B have similar score in danceability.
+
+## d) Is there any difference in tempo of each genre?
+## answer) Yes as shown in figure 4 Edm top the chart with highest tempo around 127 with R&B having the least tempo. Also I forgot to mention rocks seems to have tempo around 120
+
+## e) Does the popularity of songs differ between genres?
+## answer) Yes, it very easy to obeserve ftom the figure 5 the fact that edm and R&b are least popular while pop and rap are the most popular. Rock and R&B have the biggest spread of popularity among listeners while Rap has the least spread of popularity among listeners.
+
+## f) Does the popularity of songs differ between genres?
+## answer) Figure 6 tells us how old songs the songs that were released year ago are less popular than new modern songs. This was done throogh a scatterplot. While the graph maybe difficult to understand since most of the old songs that were released before 1970's are not included in the dataset.
+
+
+#DICUSSION
+##From the confusion matrix, we  can be seen that  genre Rock has been classified most accurately.  second and third were by EDM and Rap respectively while  Classfication of Pop, Latin and R&B are were low  accuracy with Pop being the least accurate.
+##The 4 metrics used to evaluate the performance of the model are:
+## Sensitivity: measures how  the model tells  correctly identifies instances of a specific genre.
+## Specificity: measures how well the model correctly tells  instances that are not of a specific genre.
+## Also the variables that the founders are interested in, the variables which are also used in predicting the genre of the song are energy, acous,valence, duration, and loudness of the song.
+## Accuracy: measures the overall correctness of the model’s predictions across all genres. 
+#Precision: focuses on how well the model’s positive predictions match the actual positive instances. 
+
+# Conclusion 
+
+## We can succesffully derive that the features the founders were intrested in has a huge influence on song popularity .The features which the founders asked us to anlayze on that is song release year,speechiness, danceability, and tempo showed influence  in determining genre of the song. 
+## The Random Forest model is was selected  for genre prediction due to its best and accurate  performance in comparison to Linear Discriminant Analysis and K-Nearest Neighbors models. We can get better performance by using other algorithms such as  Logistic Regression, Naive Bayes Classifiers as these classification algorithms can improve comparing performance.
+
+## Last but not the least in future there is high possibility of music industry to grow therefore, continuos efforst should be made for improving and implementing different algorithms and strategies to achieve these goals.
+
+## The best model rf model had sesnitivity of 0.564, specificty of 0.912 , accuracy of 0.560 and precison of 0.560
+
+# Appendix
+## First we will begin our analysis with loading relevant libraries. With the help of these libraries it will be  easy and possible for us to achieve success in our analysis 
+```{r setup, include=FALSE}
+library(tidyverse)
+library(tidyr)
+library(dplyr)
+library(tidymodels)
+library(caret)
+library(inspectdf)
+library(ggplot2)
+library(ggthemes)
+library(skimr)
+library(knitr)
+library(readxl)
+library(rsample)
+library(themis)
+library(recipes)
+library(parsnip)
+library(tune)
+library(dials)
+library(kknn)
+library(yardstick)
+library(spotifyr)
+library(discrim)
+library(ranger)
+library(vip)
+library(janitor)
+```
+
+
+# Importing the data
+
+## Now data will be imported in the format of a csv file .
+
+
+```{r}
+spotify_songs <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-21/spotify_songs.csv', show_col_types = FALSE)
+```
+
+# Initial Data Analysis
+
+## Here we will have a brief look at the data , which is in it's purest raw form. In other technical words this data has possibility of having some erros which can give us some trouble or might give us not the best prediction or analysis with the highest accuracy.
+```{r}
+Initial_spotify_songs_data <- spotify_songs %>%
+  skim_without_charts()
+Initial_spotify_songs_data
+```
+# Observations derived from the initial Data Analysis
+
+## (1) We can observe that there are total 32833 observations in our dataset .
+## (2) There are in total 23 variables which also include the independent ones . 
+## (3) Out of those 23 variables we have 10 variables which belong to the character data type and 13 variables that belong to numeric data type . 
+## (4) We can also observe that there are some missing values in the variables of "track_name" , "track_artist" and "track_album_name" respectively. Also each of the above mentioned variables have the same amount of missing data which is 5.
+## (5) Due to limitations in computing power, we will be doing the following steps in order to achieve our goals.
+### (a) The dataset will be reduced to 1000 observations per class of the independent variable , "playlist_genre"
+### (b) The missing will be removed as well, since they are a barrier for us to analyse the data.
+
+
+# Data Cleaning
+
+```{r}
+spotify_cleaned <- na.omit(spotify_songs) 
+inspect_na(spotify_cleaned)
+```
+# As expected the above data has no missing values for the operation and execution of eliminating the missing values(Na values).
+
+## Selecting relevant columns 
+
+```{r}
+
+spotify_cleaned <- spotify_cleaned %>% 
+  subset(select = -c(track_id, track_name, track_artist,
+track_album_id, track_album_name,
+playlist_name, playlist_id,
+playlist_subgenre))
+```
+## In the above chunk, rather than selecting the subset of coulumns that we want (which I had initially intended  ), I decided mention the columns that will be filtered out.
+
+## From the above tables we understand that in the case of the variable playlist_genre  have comparatively less unique values hence should a factor data type also the data type for the variable "track_album_release_date" is not correct since it should be a numerical data type. Also we are only inrested in the year when the song was released . 
+
+# Data Type Conversion
+```{r}
+spotify_cleaned <- spotify_cleaned %>% mutate(
+  playlist_genre = factor(playlist_genre),
+year =str_match(track_album_release_date,'(\\d{4})')[,1] %>% paste0("-01-01") %>% year()
+)
+
+
+head(spotify_cleaned$year)
+
+```
+## Well, the above piece of code might look small, but a lot of things are happening here, so I will take my time and explain.
+## first we changed the data type of data variable playlist_genre to factor. Then during the analysis it was found out that the data variable year had two different formats 'yyyy-mm-dd' and 'yyyy'. However we are only intrested in the year of the track released therefore I decided to keep the 'yyyy' format as the optimal one. First the dates were convertred to 'yyyy' format by extracting the values which had 4 consecutive digits from the string date. Next the paste0() function appends "-01-01" to each year string, and the reason behind this was to create "yyyy-mm-dd' format. After that the year() parses these date strings and converts them to a Date object in lubridate package(already installed and extracted). and finnaly these date objects are stored in the variable called year
+
+
+# Dimension reduction
+```{r}
+set.seed(1899824)
+genre_cleaned <- spotify_cleaned %>%
+  group_by(playlist_genre) %>%
+  slice_sample(n=1000) 
+genre_cleaned %>%
+  count(playlist_genre)
+  
+  
+  
+```
+# Now we can see that the size of the dataset is smaller , which means it will now require less computational power.
+## slice_sample() was used and the purpose for doing this was, it  chooses randomly n number of observations from every group of genre.
+
+# Skimming the data
+
+## Again we will skim the data to make sure each data variable is in its proper data type , by doing so we will get an idea where modifications are required in order to proceed
+
+```{r}
+spotify_cleaned
+skim_without_charts(spotify_cleaned)
+
+```
+
+
+
+
+## Now we can see our data is ready to be processed further as we see fit. We made necessary changes in order for the analysis
+
+
+# Exploratory Analysis
+
+## we will begin our actual analysis by understanding how and what factors can help to predict the following 
+
+## a)the year the song was released;
+## b) how “speechy” the song is;
+## c) how danceable the song is; and
+## d) the tempo of the song
+
+# 1. Genre vs   the year the song was released
+
+## First we will extract all values of genre  possible. The reason behind this to make sure all values are included and hence we can also observe whether the data produce by plot is accurate or not.
+
+
+## Unfortunately i won't be extracting all possible values of variable "year" since there are lot of values in variable "year"
+```{r}
+genre <-unique(spotify_cleaned$playlist_genre)
+print(genre)
+```
+
+```{r}
+spotify_cleaned %>%
+  ggplot(aes(x = fct_reorder(playlist_genre,year), y = year, fill = playlist_genre)) +
+  geom_boxplot() +
+  labs(title = "Boxplot of the released year of the song for each genre", x = "Genre", y = "Year Released") + 
+  theme_minimal() + labs(caption = " Figure 1 : track album release year for each genre " )
+
+
+```
+
+
+
+# 2. Genre vs how "speechy" the song is 
+
+## Again let's begin with knowing all possible entires or values of the variable "speechiness".
+```{r}
+speechiness <-unique(spotify_cleaned$speechiness)
+head(speechiness)
+```
+```{r}
+spotify_cleaned %>%
+  ggplot(aes(x= fct_reorder(playlist_genre, speechiness), y= speechiness, fill = playlist_genre)) + 
+  geom_boxplot() + 
+  labs(title = "Boxplot of 'speechy'  of the song for each genre", x = "Genre", y = "Speechiness" ) +
+  theme_minimal()  +labs(caption = " Figure 2 : speechiness for each genre " )
+```
+# 3. Genre vs how danceable the song is 
+
+## We will begin with getting all possible values of dancebility . One thing I would like to point out that the values are extracted just to make sure all of them   are included and not being exculded, there is no intention of making the report complicated by displaying such huge range of values. However the function head will be used just to make sure we get a rough idea about the possible values , but all possible values  can be seen if requested .
+
+```{r}
+spotify_cleaned %>%
+  ggplot(aes(x = fct_reorder(playlist_genre, danceability), y = danceability, fill = playlist_genre)) +
+  geom_boxplot() +
+  labs(title=  "Boxplot of how 'danceablility'  is   for each genre", x = "Genre", y = "Danceability" ) +
+  theme_minimal() +labs(caption = " Figure 3 : danceability for each genre " )
+```
+# 4. Genre vs the tempo of the song
+
+## We will here also repeat the same process by extracting all possible values of the variable "tempo"
+
+```{r}
+tempo <-unique(spotify_cleaned$speechiness)
+head(tempo)
+```
+```{r}
+spotify_cleaned %>%
+  ggplot(aes(x= fct_reorder(playlist_genre, tempo), y= tempo, fill= playlist_genre)) +
+  geom_boxplot() +
+    labs(title=  "Boxplot of how 'tempo'  is   for each genre", x = "Genre", y = "Tempo" ) +
+  theme_minimal() +labs(caption = " Figure 4 : tempo for each genre " )
+  
+```
+# Exploring further 
+
+## now we will dig a bit deeper and make follwoing comparisons
+
+## a) Does the popularity of songs differ between genres?
+## b)Is there a difference in speechiness for each genre?
+## c) How does track popularity change over time?
+
+
+
+# 1. Genre vs popularity
+```{r}
+spotify_cleaned %>%
+  ggplot(aes(x= fct_reorder(playlist_genre, track_popularity), y= track_popularity, fill= playlist_genre)) +
+  geom_boxplot() +
+  labs( title = "Boxplot of  'popularity'  for  each song genre", x = "Genre", y = "Popularity of song" ) +
+  theme_minimal()+ labs(caption = " Figure 5 : popularity for each genre " )
+
+```
+# 2. Is there a difference in speechiness for each genre?
+
+
+```{r}
+spotify_cleaned %>%
+  ggplot(aes(x= fct_reorder(playlist_genre, speechiness), y= speechiness, fill= playlist_genre)) +
+  geom_boxplot() +
+  labs( title = "Boxplot of  'speechiness' across each genre", x = "Genre", y = "speechiness" ) +
+  theme_minimal()
+
+
+```
+
+
+
+
+# 3. Track Popularity vs Time when the song was released (year)
+
+.
+
+```{r}
+track_across_years <- spotify_cleaned %>%
+  group_by(playlist_genre, year) %>%
+  summarize(average_pop = mean(track_popularity),  count = n())
+```
+
+```{r}
+ ggplot(data = track_across_years, aes(x = year, y = average_pop, color = playlist_genre)) +
+  geom_point() +
+  labs(
+    title = "Scatterplot of Track Popularity over Time",
+    x = "Year of Release",
+    y = "Average Popularity"
+  ) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) + labs(caption = " Figure 6 : popularity for each genre " )
+
+
+
+```
+
+# Splitting and Preprocessing the data
+
+## Now we will split the dataset into training set and testing set , to understand how the models will work. 
+
+```{r}
+set.seed(1899824)
+spotify_split <- initial_split(genre_cleaned)
+spotify_split
+```
+```{r}
+spotify_trained <- training(spotify_split)
+spotify_tested <- testing(spotify_split)
+
+```
+
+
+# Preprocessing
+ 
+```{r}
+spotify_recipe <- recipe(playlist_genre ~., data = spotify_trained) %>%
+  step_rm(contains("date")) %>%
+step_zv( all_predictors() ) %>%
+step_normalize( all_predictors()) %>%
+step_corr(all_predictors() ) %>%
+prep()
+spotify_recipe
+
+
+```
+```{r}
+spotify_trained_pre <- juice(spotify_recipe)
+spotify_tested_pre <- bake(spotify_recipe, new_data = spotify_tested)
+```
+```{r}
+head(spotify_trained_pre)
+```
+
+
+```{r}
+head(spotify_tested_pre)
+```
+
+# Bootstrapping
+## In this section, before we begin our model tuning and our process  for K- nearest neighbours we will create Bootstrap with 10 bootstrap samples and the resampling will be done for the "playlist_genre".
+```{r}
+set.seed( 1899824 )
+spotify_boot <- bootstraps( spotify_trained_pre, times = 10, strata = playlist_genre )
+```
+
+
+# Model Building
+
+## One of the most important part of my report. Here I will be building 3 models that are : a) LDA model b) Knn model c) Random Forest Model. After building all the three models above mentioned , they will be analysed in such a way that the best model is selected . The selection will be based on follwing conditions. 1) AUC 2) Sensitivity 3) Specificity
+## The reasons for selecting a particular model since it was proven to be best and accurate will also be explained in both techinal and non techinal languages(terms).
+
+
+# K-Nearest Neighbour Model
+
+## We will begin by craeating a model specification for a k-NN model , here we will be tuning the neighbour parameter
+
+
+
+```{r}
+spotify_knn <- nearest_neighbor(mode = "classification", neighbors = tune()) %>%
+set_engine( "kknn" )
+```
+## Now we will be using the function called grid_regular which is used to make a grid of 20 k-values that ranges from 1 to 100 , this is done in order to tune our model . 
+```{r}
+spotify_k_grid <- grid_regular(neighbors( range = c( 1, 100 )),
+levels = 20 )
+spotify_k_grid
+```
+## The above tibble is nothing but a grid of 20 k-values.
+```{r}
+spotify_knn_tune <- tune_grid(object = spotify_knn, 
+                      preprocessor = recipe(playlist_genre ~ . , data = spotify_trained_pre),
+                      resamples = spotify_boot,
+                      grid = spotify_k_grid )
+```
+## Now we will see the variation of accuracy and auc for different neighbour values of K-NN
+```{r}
+spotify_knn_tune %>% 
+  collect_metrics() %>% 
+  ggplot( aes( x = neighbors, y = mean, color = .metric)) +
+  geom_line() +
+  facet_wrap( ~.metric, scales = "free", nrow = 3) +
+  geom_vline(xintercept = 89, linetype = "dashed", color = "black")
+```
+```{r}
+spotify_knn_best <- select_best( spotify_knn_tune, "accuracy")
+spotify_knn_best
+```
+## Last step we will finalize our code
+```{r}
+spotify_knn_final <- finalize_model( spotify_knn, spotify_knn_best )
+spotify_knn_final
+```
+# Random forest Model
+
+## Now moving onto the second model which is Random forest model. In this model we will be be tuning and selecting the best random model
+
+## First step involves making the model specification to tune mtry and min_n parameters
+
+```{r}
+spotify_rf <- rand_forest(
+mode = "classification",
+mtry = tune(),
+trees = 100,
+min_n = tune()
+) %>%
+set_engine( "ranger", importance = "permutation" )
+```
+
+
+## Now the next step involves making grid to tune Rf model
+```{r}
+spotify_rf_grid <- grid_regular(
+finalize( mtry(),spotify_trained_pre %>%
+            dplyr::select( -playlist_genre ) ),
+min_n(),
+levels = 5 )
+
+```
+
+## Now we will tune our random forest model
+
+```{r}
+set.seed( 1899824 )
+spotify_rf_grid <- tune_grid( object = spotify_rf, preprocessor =  recipe(playlist_genre ~ . , data = spotify_trained_pre),
+resamples = spotify_boot,
+grid = spotify_rf_grid ) 
+
+```
+
+## Now its tme to observe the changes of accuracy and AUC for min_n and mtry
+
+```{r}
+spotify_rf_grid %>%
+collect_metrics() %>%
+mutate( min_n = as.factor( min_n ) ) %>%
+ggplot( aes( x = mtry, y = mean, colour = min_n ) ) +
+geom_point( size = 2 ) +
+geom_line( alpha = 0.75 ) +
+facet_wrap( ~ .metric, scales = "free", nrow = 3 ) +
+  geom_vline(xintercept = 4, linetype = "dashed", color = "black")
+```
+
+## Now we will select the best RD model
+
+```{r}
+spotify_rf_best <- select_best(spotify_rf_grid, "accuracy")
+spotify_rf_best
+```
+
+## Now the final steps involves finalizing the model
+```{r}
+spotify_rf_final <- finalize_model(spotify_rf, spotify_rf_best)
+spotify_rf_final
+```
+# Model Selection
+
+## Since we are working with a limited dataset along with less computational power ,  5 is optimal choice for the number of folds 
+
+```{r}
+set.seed(1899824)
+spotify_cv <- vfold_cv(spotify_trained_pre, v=5)
+```
+
+# Linear Discriminant Analysis Model
+
+## Now we will make a model specific for LDA model.
+
+```{r}
+spotify_lda <- discrim_linear("classification") %>%
+  set_engine("MASS")
+spotify_lda
+```
+
+# Model Fitting
+
+## Now we will be using the function called fit_resamples() to fit our respective models which will tell us which model is the best model ,this will be achieved by looking at the roc, accuracy, sesnsitivity and specificity.
+
+## We will begin with using fit_resamples() to fit the lda model
+
+```{r}
+spotify_lda_rs <-fit_resamples(object = spotify_lda,
+
+preprocessor = recipe(playlist_genre ~ . , data = spotify_trained_pre),
+resamples = spotify_cv)
+spotify_lda_rs %>%
+  collect_metrics()
+```
+# KNN Model 
+
+## we will use the same process in knn model as well
+
+```{r}
+spotify_knn_rs <- fit_resamples(object = spotify_knn_final,
+preprocessor =recipe(playlist_genre ~ . , data = spotify_trained_pre),
+resamples = spotify_cv)
+
+spotify_knn_rs %>%
+  collect_metrics()
+
+```
+
+
+
+# Random forest model 
+
+```{r}
+spotify_rf_rs <- fit_resamples(object = spotify_rf_final,preprocessor =recipe(playlist_genre ~ . , data = spotify_trained_pre),
+resamples = spotify_cv)
+
+spotify_rf_rs %>%
+  collect_metrics()
+
+```
+
+
+
+# From the above analysis it is very clear and evident that Random Forest model is the best model when we compare the "accuracy" and "roc_accuracy" of all three models
+
+```{r}
+set.seed(1899824)
+spotify_rf_fit <- spotify_rf_final %>%
+  fit(playlist_genre ~ . , data = spotify_trained_pre)
+```
+## We will now observe the variable importance plot (VIP)
+```{r}
+spotify_rf_fit %>% 
+vip( )
+```
+## Predictions will be obtained from the test dataset
+
+```{r}
+spotify_rf_preds <- predict(spotify_rf_fit,new_data = spotify_tested_pre) %>%
+
+bind_cols(playlist_genre =
+
+spotify_tested_pre$playlist_genre)
+
+spotify_rf_preds
+```
+## now we can easily obtain the confusion matrix
+
+```{r}
+spotify_rf_preds %>%
+conf_mat(truth = playlist_genre, estimate = .pred_class)
+```
+## Now we will get all the metrics 
+```{r}
+categorical_metrics <- metric_set(sens, spec,
+yardstick::accuracy,
+yardstick::precision)
+
+spotify_rf_preds %>%
+categorical_metrics(
+truth = playlist_genre,
+estimate = .pred_class
+)
+```
+
+
